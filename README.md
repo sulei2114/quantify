@@ -55,3 +55,20 @@ quantify/
 ```bash
 pytest
 ```
+quantify/
+├── pyproject.toml          # 项目依赖与打包配置
+├── requirements.txt        # 常用第三方依赖
+├── docs/                   # 设计文档目录（新增）
+│   ├── architecture.md     # 系统架构设计文档
+│   ├── strategy_design.md  # 策略模块设计文档
+│   └── api_design.md       # API接口设计文档
+├── src/quantify            # 核心源码
+│   ├── config              # 配置定义
+│   ├── data                # 数据加载器
+│   ├── features            # 特征工程
+│   ├── strategies          # 策略实现
+│   ├── backtest            # 回测引擎
+│   ├── execution           # 执行执行
+│   └── utils               # 通用工具
+├── scripts                 # 脚本入口
+└── tests                   # 单元测试
