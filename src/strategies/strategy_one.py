@@ -161,30 +161,30 @@ class StrategyOne:
             if index_data is not None and not self._check_market_condition(index_data.iloc[:i+1]):
                 continue
                 
-            current_price = close[i]
+            current_price = close.iloc[i]
             
             # 如果已有持仓，检查是否需要平仓
             if self.state.position:
                 if self._check_position_risk(data.iloc[:i+1]):
-                    signals[i] = -1
+                    signals.iloc[i] = -1
                     self.state.position = False
                     continue
                     
             # 生成买入信号
-            trend_up = (current_price > long_ma[i]) and (short_ma[i] > long_ma[i])
-            momentum_ok = (rsi[i] > 50) and (rsi[i] < 70)
+            trend_up = (current_price > long_ma.iloc[i]) and (short_ma.iloc[i] > long_ma.iloc[i])
+            momentum_ok = (rsi.iloc[i] > 50) and (rsi.iloc[i] < 70)
             
             if not self.state.position and trend_up and momentum_ok:
-                signals[i] = 1
+                signals.iloc[i] = 1
                 self.state.position = True
                 self.state.entry_price = current_price
                 self.state.entry_time = data.index[i]
                 self.state.highest_price = current_price
-                self.state.stop_loss_price = current_price - self.atr_multiplier * atr[i]
+                self.state.stop_loss_price = current_price - self.atr_multiplier * atr.iloc[i]
                 
             # 生成卖出信号（趋势破坏）
             elif self.state.position and not trend_up:
-                signals[i] = -1
+                signals.iloc[i] = -1
                 self.state.position = False
         
         # 创建结果对象
