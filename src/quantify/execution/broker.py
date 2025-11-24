@@ -1,4 +1,4 @@
-"""模拟撮合引擎，负责执行策略信号。"""
+"""模拟执行引擎，负责执行策略信号。"""
 
 from dataclasses import dataclass
 from typing import Iterable, List
@@ -17,7 +17,7 @@ class Order:
 
 
 class PaperBroker:
-    """纸上交易撮合器，按收盘价撮合信号。"""
+    """纸上交易执行器，按收盘价执行信号。"""
 
     def __init__(self, slippage: float = 0.0, commission: float = 0.0):
         self.slippage = slippage
