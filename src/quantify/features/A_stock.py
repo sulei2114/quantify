@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Optional
+import re
+from typing import Optional, Dict
 
 import pandas as pd
 import requests
@@ -42,7 +43,7 @@ def print_a_stock_without_st(
     return df_target
 
 
-def print_info_from_url(stock_code: str = "03690") -> None:
+def fetch_stock_analysis(stock_code: str = "03690") -> Dict[str, Optional[str]]:
     url = f"https://tool.stockstar.com/access/GZAppraisement/{stock_code}"
     response = requests.get(url, headers=DEFAULT_HEADERS, timeout=10)
     if response.status_code != 200:
@@ -73,16 +74,77 @@ def print_info_from_url(stock_code: str = "03690") -> None:
                 return text.split(sep, 1)[1].strip()
         return text.strip()
 
-    analysis = extract_metric("分析结果")
-    relative_range = extract_metric("相对估值范围")
-    absolute_range = extract_metric("绝对估值范围")
-    accuracy = extract_metric("估值准确性")
+    return {
+        "stock_text": stock_text,
+        "analysis": extract_metric("分析结果"),
+        "relative_range": extract_metric("相对估值范围"),
+        "absolute_range": extract_metric("绝对估值范围"),
+        "accuracy": extract_metric("估值准确性"),
+    }
+
+
+def print_info_from_url(
+    stock_code: str = "03690",
+    analysis_data: Optional[Dict[str, Optional[str]]] = None,
+) -> Dict[str, Optional[str]]:
+    analysis_data = analysis_data or fetch_stock_analysis(stock_code)
+    stock_text = analysis_data.get("stock_text")
+    analysis = analysis_data.get("analysis")
+    relative_range = analysis_data.get("relative_range")
+    absolute_range = analysis_data.get("absolute_range")
+    accuracy = analysis_data.get("accuracy")
 
     print(f"股票：{stock_text or '未找到'}")
     print(f"分析结果：{analysis or '未找到'}\n")
     print(f"相对估值范围：{relative_range or '未找到'}\n")
     print(f"绝对估值范围：{absolute_range or '未找到'}\n")
     print(f"估值准确性：{accuracy or '未找到'} ")
+    return analysis_data
+
+
+def fetch_realtime_price(stock_code: str, timeout: float = 5.0) -> float:
+    normalized = stock_code.strip()
+    if len(normalized) != 6 or not normalized.isdigit():
+        raise ValueError("股票代码需为 6 位数字。")
+    prefix = "sh" if normalized.startswith(("5", "6", "9")) else "sz"
+    url = f"http://qt.gtimg.cn/q={prefix}{normalized}"
+    response = requests.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
+    if response.status_code != 200:
+        raise RuntimeError(f"请求实时行情失败，状态码 {response.status_code}。")
+    payload = response.text.strip()
+    if "=" not in payload:
+        raise ValueError("返回内容异常，未找到行情数据。")
+    raw_data = payload.split("=", 1)[1].strip().strip('";')
+    if not raw_data:
+        raise ValueError("实时行情数据为空。")
+    fields = raw_data.split("~")
+    if len(fields) <= 3 or not fields[3]:
+        raise ValueError("无法解析实时价格。")
+    return float(fields[3])
+
+
+def parse_relative_range(range_text: str) -> Optional[tuple[float, float]]:
+    if not range_text:
+        return None
+    matches = re.findall(r"-?\d+(?:\.\d+)?", range_text)
+    if len(matches) < 2:
+        return None
+    lower, upper = map(float, matches[:2])
+    if lower > upper:
+        lower, upper = upper, lower
+    return lower, upper
+
+
+def is_price_in_front_half(price: float, range_text: Optional[str]) -> bool:
+    parsed = parse_relative_range(range_text) if range_text else None
+    if not parsed:
+        return False
+    lower, upper = parsed
+    if lower == upper:
+        return price <= lower
+    midpoint = lower + (upper - lower) / 2
+    return lower <= price <= midpoint
+
 
 # 示例调用
 
@@ -92,5 +154,15 @@ if __name__ == "__main__":
     if byd_df.empty:
         raise RuntimeError("未在列表中找到比亚迪的股票代码。")
     byd_code = byd_df.iloc[0]["股票代码"]
-    print(f"从列表中获取到比亚迪代码：{byd_code}")
-    print_info_from_url(stock_code=byd_code)
+    try:
+        current_price = fetch_realtime_price(byd_code)
+        analysis_data = fetch_stock_analysis(byd_code)
+        # if not is_price_in_front_half(current_price, analysis_data.get("relative_range")):
+        #     print("比亚迪当前股价未处于相对估值范围前 50%。")
+        # else:
+        print("==================")
+        print(f"股票代码：{byd_code}")
+        print(f"当前股价：{current_price} 元")
+        print_info_from_url(stock_code=byd_code, analysis_data=analysis_data)
+    except Exception as exc:
+        print(f"处理股票 {byd_code} 失败：{exc}")
