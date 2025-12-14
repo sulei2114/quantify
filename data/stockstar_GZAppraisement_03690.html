@@ -1,0 +1,1353 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=1,viewport-fit=cover" />
+    <title>估值分析</title>
+    <link rel="stylesheet" type="text/css" href="/access/Content/css/swiper-bundle.css" />
+    <link rel="stylesheet" type="text/css" href="/access/Content/css/valuation.css?v=2.10" />
+
+    <script src="/access/Content/js/swiper-bundle.js"></script>
+    <script src="//tool.stockstar.com/ai/js/marked.min.js"></script>
+    <script>
+        var type = '0';
+        var stockname = '美团-W';
+         var Configs = {
+            DomainUrl: '//tool.stockstar.com/access',
+        };
+    </script>
+</head>
+<body>
+    <div class="valuation">
+        <div class="head_nav" style="height: 44px;position: relative;font-size: 16px;background-color: #ffffff;">
+            <div class="head_return" style="position: absolute;left: 16px;width: 10px;display: flex;align-items: center;height: 100%;">
+                <span><img src="/access/Content/image/topbar_back.png"></span>
+            </div>
+            <div style="padding-left: 40px;line-height: 44px;">
+                美团-W (03690)估值分析
+            </div>
+            <div class="paynemt_im" style="width: 16px;height: 16px;position: absolute;display: flex;align-items: center;height: 100%;right: 15px;top: 0;">
+                <a href="//tool.stockstar.com/search/search_default/gz"><img src="/access/Content/image/guzhi.png"></a>
+            </div>
+        </div>
+
+        <div id="lo">
+            <span id="jia" style="width:100%;height:100%;position:fixed;z-index:999;text-align:center;padding-top:24px;background-color:#FFFFFF;max-width:960px;font-size: 16px;">加载中 · · ·</span>
+        </div>
+        <div class="pointer">
+            <div class="poin_left">
+                <div class="orange"></div>
+                <p>估值指针</p>
+            </div>
+            <div class="poin_right">
+                <div class="poin_tall">
+                    <img src="/access/Content/image/ltan.png">
+                </div>
+                <p>估值说明</p>
+            </div>
+        </div>
+        <div class="pointerto">
+            <div class="pointer_top">
+                <div class="pointer_left" id="hong" style="width: 100%;height: 160%;">
+
+                </div>
+                <span class="tp">估值较低</span>
+                <span class="cp">现况</span>
+                <span class="bp">估值较高</span>
+            </div>
+            <div class="pointer_right yu">
+                <h2>
+                    分析结果：股价合理
+                </h2>
+                <div class="yuo">
+                    <p>相对估值范围：<span class="hei">93.16-102.97</span></p>
+                    <p>估值准确性：<span class="hei">B</span></p>
+                </div>
+                <div class="yuo">
+                    <p>绝对估值范围：<span class="hei">--</span></p>
+                </div>
+            </div>
+            <div class="pointer_bottom">
+                <p>
+                    数据简析：根据证券之星行业相对比较显示美团-W行业内竞争力的护城河一般，盈利能力较差，营收成长性良好。综合基本面各维度看，股价合理。
+                </p>
+                <div class="wxb" style="display:none">
+                    <div class="wxb_open" data-val="0"><img src="//i.ssimg.cn/ai/image/bottom.png" alt=""></div>
+                    <div class="re_text_cen">
+                        <div class="re_ts">
+                            <div class="re_text"></div>
+                            <div class="warn"><img src="//i.ssimg.cn/ai/image/warn.png" alt=""><p>本回答由AI生成 仅供参考 不构成任何专业建议</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="division"></div>
+        
+        <div id="jtq" style="display:none">
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>价投圈</p>
+                </div>
+                
+            </div>
+            <div style="padding: 0 0.3rem 0;" id="jtq_content">
+                <div class="jtq_href" onclick="location.href='//sns.vip.stockstar.com/sns/forumdetail/1405'">
+                    <p class="jtq_title">股价从2000跌到100，你发财了</p>
+                    <p class="jtc_text"> </p>
+                    <ul class="jh_img_list"></ul>
+                    <ul class="jh_label">
+                        <li>
+                            <div class="jtq_label">
+                                <img src="/search/content/image/ji.png" alt="">
+                                <p><a href="//sns.vip.stockstar.com/Sns/Search?param=心理按摩">心理按摩</a></p>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="fenge" style="height: 1px; background-color: #e7e7e7;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="division"></div>
+        <div class="pointer">
+            <div class="poin_left">
+                <div class="orange"></div>
+                <p>相关评级</p>
+            </div>
+            <div class="poin_rightto" onclick="Expmates()">
+                <div class="poin_tall">
+                    <img src="/access/Content/image/ltan.png">
+                </div>
+                <p>评级说明</p>
+            </div>
+        </div>
+        <div class="radar">
+            <div class="poin_rights poin_time">
+                <p style="font-family: '黑体';" id="zdsj"></p>
+            </div>
+            <div id="radars">
+
+            </div>
+            <div class="radar_star">
+                <div class="star_left">
+                    好投资评级：
+                </div>
+                <div class="star_right" id="htz">
+                </div>
+            </div>
+            <div class="star_bo"></div>
+            <div id="radarsto"></div>
+            <div class="radar_star">
+                <div class="star_left">
+                    好价格评级：
+                </div>
+                <div class="star_right" id="hjg">
+                </div>
+            </div>
+        </div>
+        <div class="division"></div>
+        <!--分析师预测-->
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>分析师预测</p>
+                </div>
+                <div class="poin_rightto">
+                    <a href="//tool.stockstar.com/stocksurvey/analysts/03690">更多></a>
+                </div>
+            </div>
+            <ul class="table_xm">
+                <li>
+                    <div class="xm">
+                        分析师
+                    </div>
+                    <div class="zhi">
+                        预测精准度
+                    </div>
+                    <div class="tb">
+                        净利润增长率
+                    </div>
+                    <div class="tb">
+                        现金流贴现
+                    </div>
+
+                </li>
+                    <li>
+                        <div class="xm">
+                            崔世峰&nbsp;&nbsp;中信建投
+                        </div>
+                        <div class="zhi">
+                            24.44%
+                        </div>
+                        <div class="tb">
+                            -148.64%
+                        </div>
+                        <div class="tb">
+                            <a href="//tool.stockstar.com/calculator/calcul/03690_崔世峰_中信建投" class="num_gs">股价现值估算</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            于伯韬&nbsp;&nbsp;中信建投
+                        </div>
+                        <div class="zhi">
+                            25.16%
+                        </div>
+                        <div class="tb">
+                            -148.64%
+                        </div>
+                        <div class="tb">
+                            <a href="//tool.stockstar.com/calculator/calcul/03690_于伯韬_中信建投" class="num_gs">股价现值估算</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            夏路路&nbsp;&nbsp;华泰证券
+                        </div>
+                        <div class="zhi">
+                            35.15%
+                        </div>
+                        <div class="tb">
+                            -144.44%
+                        </div>
+                        <div class="tb">
+                            <a href="//tool.stockstar.com/calculator/calcul/03690_夏路路_华泰证券" class="num_gs">股价现值估算</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            苏燕妮&nbsp;&nbsp;华泰证券
+                        </div>
+                        <div class="zhi">
+                            31.03%
+                        </div>
+                        <div class="tb">
+                            -144.44%
+                        </div>
+                        <div class="tb">
+                            <a href="//tool.stockstar.com/calculator/calcul/03690_苏燕妮_华泰证券" class="num_gs">股价现值估算</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            李京霖&nbsp;&nbsp;第一上海
+                        </div>
+                        <div class="zhi">
+                            25.29%
+                        </div>
+                        <div class="tb">
+                            -133.23%
+                        </div>
+                        <div class="tb">
+                            <a href="//tool.stockstar.com/calculator/calcul/03690_李京霖_第一上海" class="num_gs">股价现值估算</a>
+                        </div>
+                    </li>
+
+            </ul>
+            <div class="division"></div>
+
+        <!--机构持仓-->
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>机构持仓</p>
+                </div>
+            </div>
+            <ul class="detail_ul">
+                <li>
+                    &nbsp;&nbsp;持有基金总数：<span class="span_colo">254</span>
+                </li>
+                <li>
+                    &nbsp;&nbsp;持有明星基金数：<span class="span_colo">0</span>
+                </li>
+                <li>
+                    &nbsp;&nbsp;总持股数：<span class="span_colo">40364.54万股</span>
+                </li>
+                <li>
+                    &nbsp;&nbsp;占流通股比：<span class="span_colo">7.30%</span>
+                </li>
+            </ul>
+            <ul class="table_xm">
+                <li>
+                    <div class="xm">
+                        基金产品
+                    </div>
+                    <div class="zhi">
+                        持股数
+                    </div>
+                    <div class="tb">
+                        本季度持仓变动
+                    </div>
+                </li>
+                    <li>
+                        <div class="xm">
+                            <p>富国中证港股通互联网ETF(159792)</p>
+                        </div>
+                        <div class="zhi">
+                            7610.90万股
+                        </div>
+                        <div class="tb">
+                            增仓
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            <p>工银瑞信国证港股通科技30ETF(159636)</p>
+                        </div>
+                        <div class="zhi">
+                            3580.20万股
+                        </div>
+                        <div class="tb">
+                            增仓
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            <p>华夏恒生科技ETF(QDII)(513180)</p>
+                        </div>
+                        <div class="zhi">
+                            3308.95万股
+                        </div>
+                        <div class="tb">
+                            增仓
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            <p>华夏恒生互联网科技业ETF(QDII)(513330)</p>
+                        </div>
+                        <div class="zhi">
+                            3140.13万股
+                        </div>
+                        <div class="tb">
+                            增仓
+                        </div>
+                    </li>
+                    <li>
+                        <div class="xm">
+                            <p>易方达中概互联50ETF(513050)</p>
+                        </div>
+                        <div class="zhi">
+                            2247.55万股
+                        </div>
+                        <div class="tb">
+                            增仓
+                        </div>
+                    </li>
+            </ul>
+            <div class="mouch_data">
+                <a href="//tool.stockstar.com/fundmanhold/dalao/holddetail/03690" class="mouch_a">查看更多持仓&gt;</a>
+            </div>
+            <div class="division"></div>
+
+
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>盈利能力</p>
+                </div>
+                
+            </div>
+            <!--轮播 -->
+            <div class="swiper swiper1">
+                <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <ul class="forecast_list">
+                                <li>
+                                    <div>
+                                        项目
+                                    </div>
+                                    <div>
+                                        2024
+                                    </div>
+                                    <div>
+                                        2023
+                                    </div>
+                                    <div>
+                                        2022
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        毛利率
+                                    </div>
+                                    <div>
+                                        38.44%
+                                            <img class="yx" src="/access/content/image/fx/2.png" alt="">
+                                    </div>
+                                    <div>
+                                        35.11%
+                                    </div>
+                                    <div>
+                                        28.07%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        净利率
+                                    </div>
+                                    <div>
+                                        10.60%
+                                            <img class="yx" src="/access/content/image/fx/3.png" alt="">
+                                    </div>
+                                    <div>
+                                        5.00%
+                                    </div>
+                                    <div>
+                                        -3.03%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROE
+                                    </div>
+                                    <div>
+                                        21.83%
+                                            <img class="yx" src="/access/content/image/fx/1.png" alt="">
+                                    </div>
+                                    <div>
+                                        9.80%
+                                    </div>
+                                    <div>
+                                        -5.02%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROIC
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        三费占比
+                                    </div>
+                                    <div>
+                                        22.52%
+                                            <img class="yx" src="/access/content/image/fx/2.png" alt="">
+                                    </div>
+                                    <div>
+                                        25.07%
+                                    </div>
+                                    <div>
+                                        23.23%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        销售费用
+                                    </div>
+                                    <div>
+                                        639.75亿
+                                            <img class="yx" src="/access/content/image/fx/4.png" alt="">
+                                    </div>
+                                    <div>
+                                        586.16亿
+                                    </div>
+                                    <div>
+                                        397.45亿
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        管理费用
+                                    </div>
+                                    <div>
+                                        107.29亿
+                                            <img class="yx" src="/access/content/image/fx/2.png" alt="">
+                                    </div>
+                                    <div>
+                                        93.72亿
+                                    </div>
+                                    <div>
+                                        97.71亿
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        财务费用
+                                    </div>
+                                    <div>
+                                        13.36亿
+                                            <img class="yx" src="/access/content/image/fx/2.png" alt="">
+                                    </div>
+                                    <div>
+                                        14.23亿
+                                    </div>
+                                    <div>
+                                        15.83亿
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul class="forecast_list">
+                                <li>
+                                    <div>
+                                        项目
+                                    </div>
+                                    <div>
+                                        2021
+                                    </div>
+                                    <div>
+                                        2020
+                                    </div>
+                                    <div>
+                                        2019
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        毛利率
+                                    </div>
+                                    <div>
+                                        23.71%
+                                    </div>
+                                    <div>
+                                        29.66%
+                                    </div>
+                                    <div>
+                                        33.13%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        净利率
+                                    </div>
+                                    <div>
+                                        -13.13%
+                                    </div>
+                                    <div>
+                                        4.10%
+                                    </div>
+                                    <div>
+                                        2.29%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROE
+                                    </div>
+                                    <div>
+                                        -21.34%
+                                    </div>
+                                    <div>
+                                        5.11%
+                                    </div>
+                                    <div>
+                                        2.47%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROIC
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        三费占比
+                                    </div>
+                                    <div>
+                                        28.11%
+                                    </div>
+                                    <div>
+                                        23.40%
+                                    </div>
+                                    <div>
+                                        23.97%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        销售费用
+                                    </div>
+                                    <div>
+                                        406.83亿
+                                    </div>
+                                    <div>
+                                        208.82亿
+                                    </div>
+                                    <div>
+                                        188.19亿
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        管理费用
+                                    </div>
+                                    <div>
+                                        86.12亿
+                                    </div>
+                                    <div>
+                                        55.93亿
+                                    </div>
+                                    <div>
+                                        43.38亿
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        财务费用
+                                    </div>
+                                    <div>
+                                        10.80亿
+                                    </div>
+                                    <div>
+                                        3.84亿
+                                    </div>
+                                    <div>
+                                        2.20亿
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul class="forecast_list">
+                                <li>
+                                    <div>
+                                        项目
+                                    </div>
+                                    <div>
+                                        2018
+                                    </div>
+                                    <div>
+                                        2017
+                                    </div>
+                                    <div>
+                                        2016
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        毛利率
+                                    </div>
+                                    <div>
+                                        23.15%
+                                    </div>
+                                    <div>
+                                        36.01%
+                                    </div>
+                                    <div>
+                                        45.74%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        净利率
+                                    </div>
+                                    <div>
+                                        -177.06%
+                                    </div>
+                                    <div>
+                                        -55.96%
+                                    </div>
+                                    <div>
+                                        -44.61%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROE
+                                    </div>
+                                    <div>
+                                        -525.01%
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROIC
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        三费占比
+                                    </div>
+                                    <div>
+                                        32.93%
+                                    </div>
+                                    <div>
+                                        38.58%
+                                    </div>
+                                    <div>
+                                        77.45%
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        销售费用
+                                    </div>
+                                    <div>
+                                        158.71亿
+                                    </div>
+                                    <div>
+                                        109.08亿
+                                    </div>
+                                    <div>
+                                        83.37亿
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        管理费用
+                                    </div>
+                                    <div>
+                                        55.46亿
+                                    </div>
+                                    <div>
+                                        21.71亿
+                                    </div>
+                                    <div>
+                                        17.22亿
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        财务费用
+                                    </div>
+                                    <div>
+                                        0.62亿
+                                    </div>
+                                    <div>
+                                        0.09亿
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul class="forecast_list">
+                                <li>
+                                    <div>
+                                        项目
+                                    </div>
+                                    <div>
+                                        2015
+                                    </div>
+                                    <div>
+                                        2014
+                                    </div>
+                                    <div>
+                                        2013
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        毛利率
+                                    </div>
+                                    <div>
+                                        69.15%
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        净利率
+                                    </div>
+                                    <div>
+                                        -261.74%
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROE
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        ROIC
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        三费占比
+                                    </div>
+                                    <div>
+                                        249.97%
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        销售费用
+                                    </div>
+                                    <div>
+                                        71.40亿
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        管理费用
+                                    </div>
+                                    <div>
+                                        29.05亿
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        财务费用
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                    <div>
+                                        --
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="division"></div>
+
+        <!--盈利质量-->
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>资产结构</p>
+                </div>
+            </div>
+            <ul class="structure">
+                <li class="total_a">
+                    <div>总资产</div>
+                    <div>3243.54亿</div>
+                    <div>100%</div>
+                </li>
+                <li class="total_b">
+                    <div>流动资产</div>
+                    <div>2097.34亿</div>
+                    <div>64.66%</div>
+                </li>
+                <li class="total_c">
+                    <div>货币资金</div>
+                    <div>708.34亿</div>
+                    <div>21.83%</div>
+                </li>
+                <li class="total_c">
+                    <div>存货</div>
+                    <div>17.34亿</div>
+                    <div>0.53%</div>
+                </li>
+                <li class="total_c">
+                    <div>预付款</div>
+                    <div>33.88亿</div>
+                    <div>1.04%</div>
+                </li>
+                <li class="total_b">
+                    <div>非流动资产</div>
+                    <div>1146.20亿</div>
+                    <div>35.33%</div>
+                </li>
+                <li class="total_c">
+                    <div>固定资产</div>
+                    <div>--</div>
+                    <div>--</div>
+                </li>
+                <li class="total_c">
+                    <div>无形资产</div>
+                    <div>302.30亿</div>
+                    <div>9.32%</div>
+                </li>
+                <li class="total_c">
+                    <div>长期待摊费用</div>
+                    <div>--</div>
+                    <div>--</div>
+                </li>
+                <li class="total_c">
+                    <div>商誉</div>
+                    <div>--</div>
+                    <div>--</div>
+                </li>
+            </ul>
+            <div class="division"></div>
+        <!--财务风险-->
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>财务风险</p>
+                </div>
+            </div>
+            <div class="pointer_cwfx">
+                <p>
+                    综述：财务健康。
+                </p>
+            </div>
+            <ul class="table_xm">
+                <li>
+                    <div class="xm">
+                        项目
+                    </div>
+                    <div class="zhi">
+                        数值
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        货币资金/总资产(%)
+                    </div>
+                    <div class="zhi ">
+                        30.78
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        有息资产负债率 (%)
+                    </div>
+                    <div class="zhi ">
+                        --
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        财费货币率(%)
+                    </div>
+                    <div class="zhi ">
+                        0.01
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        应收账款/利润(%)
+                    </div>
+                    <div class="zhi ">
+                        8.77
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        存货/营收(%)
+                    </div>
+                    <div class="zhi ">
+                        0.73
+                    </div>
+                </li>
+
+                <li>
+                    <div class="xm">
+                        经营现金流/利润(%)
+                    </div>
+                    <div class="zhi ">
+                        159.59
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        有息负债/近3年经营性现金流均值(%)
+                    </div>
+                    <div class="zhi ">
+                        --
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        财务费用/近3年经营性现金流均值(%)
+                    </div>
+                    <div class="zhi ">
+                        3.67
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        流动比率
+                    </div>
+                    <div class="zhi ">
+                        1.93
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        近3年经营性现金流均值/流动负债(%)
+                    </div>
+                    <div class="zhi ">
+                        64.83
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        货币资金/流动负债(%)
+                    </div>
+                    <div class="zhi ">
+                        181.27
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        盈利质量瑕疵数
+                    </div>
+                    <div class="zhi ">
+                        0
+                    </div>
+                </li>
+            </ul>
+            <div class="pointer_fxbz">
+                <p>
+                    备注：标红表示该项数据显示可能存在经营隐患。
+                </p>
+            </div>
+            <div class="division"></div>
+        <!--盈利质量-->
+            <div class="pointer">
+                <div class="poin_left">
+                    <div class="orange"></div>
+                    <p>盈利质量</p>
+                </div>
+            </div>
+            <div class="pointer_cwfx">
+                <p>
+                    
+                </p>
+            </div>
+            <ul class="table_xm">
+                <li>
+                    <div class="xm">
+                        项目
+                    </div>
+                    <div class="zhi">
+                        数值
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        应收账款/利润环比(%)
+                    </div>
+                    <div class="zhi ">
+                        8.39
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        应收账款/利润3年变动比例(%)
+                    </div>
+                    <div class="zhi ">
+                        --
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        存货/营收环比(%)
+                    </div>
+                    <div class="zhi ">
+                        30.60
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        在建工程/利润(%)
+                    </div>
+                    <div class="zhi">
+                        --
+
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        在建工程/利润环比(%)
+                    </div>
+                    <div class="zhi">
+                        --
+
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        (应收+在建+存货)/利润环比(%)
+                    </div>
+                    <div class="zhi ">
+                        17.19
+
+                    </div>
+                </li>
+                <li>
+                    <div class="xm">
+                        经营性现金流/利润(%)
+                    </div>
+                    <div class="zhi ">
+                        159.59
+                    </div>
+                </li>
+
+            </ul>
+            <div class="division"></div>
+        <div id="cbyj">
+        </div>
+
+        <input type="hidden" name="hiddenProductId" id="hiddenProductId" value="" />
+        <div class="division"></div>
+        <div class="explain">
+            <p>
+                &emsp;&emsp;估值指针适用于初学者人群，部分行业算法有待进一步完善，所得结果仅供参考，不作为投资建议。股市有风险，投资需谨慎。
+            </p>
+            
+        </div>
+        <div class="expmate">
+            <div class="expmateto">
+                <div class="expmate_cen">
+                    <h2>估值说明</h2>
+                    <div class="ex_mi">
+                        <p><strong>估值范围</strong>：结合多个基本面维度进行的相对估值测算结果</p>
+                        <p><strong>估值准确性</strong>：估值模型的历史回测情况，评级由高到低分别为A+、A、B、C</p>
+                        <p><strong>估值仪表盘</strong>：估值指针的可视化展现，仪表盘越偏向左侧代表该股越低估，反之则表示该股越高估。</p>
+                    </div>
+                    <div class="ex_now">
+                        知道了
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="expmates">
+            <div class="expmatetos">
+                <div class="expmate_cens">
+                    <h2>评级说明</h2>
+                    <div class="ex_mis">
+                        <div id="exdong">
+                            <p><strong>好投资评级</strong>：好投资评级越高说明公司基本面越好</p>
+                            <p><strong>护城河</strong>：企业竞争优势的衡量指标</p>
+                            <p><strong>盈利能力</strong>：企业相对成本下的赚钱能力</p>
+                            <p><strong>经营效率</strong>：企业相对的运营周转情况</p>
+                            <p><strong>财务健康</strong>：企业相对的财务健康程度</p>
+                            <p><strong>成长性</strong>：企业的业务经营成长潜力</p>
+                            <p><br /></p>
+                            <p><strong>好价格评级</strong>：好价格评级越高说明股价更低估</p>
+                            <p><strong>安全边际</strong>：公司对比历史所处于的估值情况</p>
+                            <p><strong>相对成长性</strong>：成长性和估值的相对匹配情况</p>
+                            <p><strong>未来回报率</strong>：综合企业未来成长因素下的估值情况</p>
+                            <p><strong>股息率</strong>：企业历史派发股息的多寡情况</p>
+                            <p><strong>估值倍数</strong>：企业相对行业的静态估值情况</p>
+                        </div>
+                    </div>
+                    <div class="ex_nows" onclick="Expmatesto()">
+                        知道了
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/access/Content/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/access/Content/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/access/Content/js/searchto.js?v=1.0" type="text/javascript" charset="utf-8"></script>
+    <script src="/access/Content/js/valuation.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/access/Content/js/sns.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+       
+        window.onload = function () {
+            $('#lo').hide();
+          
+            $(".wxb_open").on("click", function () {
+                var val = $(this)[0].dataset.val;
+                if (val == "0") {
+                    $(this).find("img").attr("src", "//i.ssimg.cn/ai/image/top.png");
+                    $(this)[0].dataset.val = "1";
+                    $(".re_text_cen").animate({ height: _height }, 1000);
+                } else {
+                    $(this).find("img").attr("src", "//i.ssimg.cn/ai/image/bottom.png");
+                    $(this)[0].dataset.val = "0";
+                    $(".re_text_cen").animate({ height: min_height }, 1000);
+                }
+                // $(".re_text").slideToggle(1000);
+
+            })
+        }
+        var min_height = 0;
+        var _height =0;
+        var debug = '';
+        var ajaxurl = '/access';
+        $(function () {
+
+           
+            if(debug == ''){
+                debug='0';
+            }
+            $('.head_return span img').on('click', function () {
+                window.history.go(-1); //刷新上一页
+            })
+            //getaigcdata();
+            //$(".head_return span img").attr("href", "javascript:void(0);").click(function () {
+            //    if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+            //        changeCurrentUrl();
+            //        window.location.href = window.document.referrer;
+            //    } else { window.history.go("-1"); }
+            //});
+
+            //function changeCurrentUrl() {
+            //    var replaceUrl = window.location.href + "?i=" + new Date().getTime();
+            //    history.replaceState(null, "", replaceUrl);
+            //}
+            // 新加轮播
+            var mySwiper = new Swiper('.swiper1', {
+                direction: 'horizontal', // 垂直切换选项
+                loop: true, // 循环模式选项
+                pagination: {
+                    el: '.swiper-pagination',
+                    bulletActiveClass: 'my-active',
+                    bulletClass: 'my-bullet',
+                },
+            })
+            
+            getstardata(1);
+            getstardata(2);
+
+            $('.fin_tuan a').on('click', function () {
+                var code = $(this).attr('code');
+                $('#hiddenProductId').attr('value', code);
+                saveVisitedCode();
+                window.location.href = "/access/GZAppraisement/" + code;
+            })
+        })
+
+        function GetData() {
+            $.ajax({
+                url: ajaxurl+"/GZ/GetData?stockcode=" + '03690',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    if (result.ret == 0) {
+                        var data = result.data;
+                        $('#zdsj').html("诊断时间："+result.time);
+                        x1.push(data.HCH_IDX, data.CZX_IDX, data.CWJK_IDX, data.JYXL_IDX, data.YLNL_IDX);
+                        x2.push(data.AQBJ_IDX, data.GZBS_IDX, data.XDZZL_IDX, data.WLHBL_IDX, data.GXL_IDX);
+                        //仪表盘
+                        num = parseFloat(data.LASTPX.toFixed(2));
+                        i = parseFloat(data.HJG_MIDVAL.toFixed(2));//中位数评估
+                        n4 = parseFloat((data.HJG_MIDVAL * 0.8).toFixed(2));
+                        n3 = parseFloat((data.HJG_MIDVAL + (data.HJG_MIDVAL * 0.2)).toFixed(2));
+                        n = parseFloat(((n3 - n4) / 10).toFixed(2));
+                        if (num < n4) {
+                            num = n4;
+                        }
+                        if (num > n3) {
+                            num = n3;
+                        }
+                        a = n4 + n;
+                    }
+                }
+            });
+        }
+        function getstardata(type) {
+            $.ajax({
+                url: ajaxurl+'/GZ/GetXingData?stockcode=' + '03690' + '&type=' + type,
+                data:'html',
+                async: true,
+                success:function (result) {
+                    if (result.length > 0) {
+                        if(type == 1){
+                            $('#htz').html(result);
+                        }
+                        else{
+                            $('#hjg').html(result);
+                        }
+                    }
+                }
+            })
+        }
+          function getaigcdata(code) {
+
+              $.ajax({
+                  url: Configs.DomainUrl + '/GZ/GetAIGCData?stockcode=' + '03690',
+                async: true,
+                  success: function (result) {
+                      console.log(result)
+                      if (result.ret == 0) {
+                          $(".wxb").show();
+                          $(".re_text").html(marked.parse(result.data.EVAL_MD));
+                          min_height = $(".re_text_cen").height();
+                          _height = $(".re_ts").height();
+                    }
+                }
+            })
+        }
+    </script>
+    <!--WebTCode Start-->
+    <script type="text/javascript" src="//www.stockstar.com/wt/SS_dcs_tag.js"></script>
+    <!--WebTCode End-->
+</body>
+</html>
