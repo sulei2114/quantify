@@ -1,9 +1,9 @@
- # Python 缓存文件
- __pycache__/
- *.py[cod]
+# Python 缓存文件
+__pycache__/
+*.py[cod]
 
- # 虚拟环境
- .venv/
+# 虚拟环境
+.venv/
  env/
  venv/
 
