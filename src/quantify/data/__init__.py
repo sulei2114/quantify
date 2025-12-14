@@ -2,6 +2,6 @@
 
 from .base import DataLoader
 from .local import LocalCSVLoader
+from .akshare_loader import AkshareHKIndexLoader
 
-__all__ = ["DataLoader", "LocalCSVLoader"]
-
+__all__ = ["DataLoader", "LocalCSVLoader", "AkshareHKIndexLoader"]

@@ -1,45 +1,43 @@
-"""策略基础接口与信号定义。"""
-
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from datetime import datetime
-from typing import Iterable, Protocol
-
+from typing import Any, Dict, Iterator, Optional
 import pandas as pd
 
-
-@dataclass(frozen=True)
+@dataclass
 class Signal:
-    """交易信号实体。"""
-
+    """策略生成的交易信号。"""
     symbol: str
-    timestamp: datetime
-    direction: str  # buy / sell / hold
-    weight: float = 1.0
+    action: str  # "BUY", "SELL"
+    price: Optional[float] = None
+    volume: Optional[float] = None
+    reason: str = ""
 
-
-class StrategyContext(Protocol):
-    """策略上下文协议，可由回测引擎或实时系统实现。"""
-
-    def get_position(self, symbol: str) -> float:  # pragma: no cover - 协议方法
-        ...
-
-    def record(self, key: str, value: float) -> None:  # pragma: no cover
-        ...
-
-
-class BaseStrategy(ABC):
-    """策略基类，定义策略生命周期接口。"""
-
-    name: str = "base"
+class StrategyContext(ABC):
+    """策略运行上下文接口。"""
+    @abstractmethod
+    def get_position(self, symbol: str) -> float:
+        pass
 
     @abstractmethod
-    def generate_signals(self, data: pd.DataFrame, context: StrategyContext) -> Iterable[Signal]:
-        """根据行情数据生成交易信号。"""
+    def set_position(self, symbol: str, size: float) -> None:
+        pass
+
+    @abstractmethod
+    def record(self, key: str, value: float) -> None:
+        pass
+
+class BaseStrategy(ABC):
+    """策略基类。"""
 
     def on_start(self, context: StrategyContext) -> None:
-        """策略开始运行时的钩子，可用于初始化状态。"""
+        """策略开始运行时调用。"""
+        pass
+
+    @abstractmethod
+    def generate_signals(self, data: pd.DataFrame, context: StrategyContext) -> Iterator[Signal]:
+        """根据数据生成交易信号。"""
+        pass
 
     def on_finish(self, context: StrategyContext) -> None:
-        """策略结束运行时的钩子，可用于清理资源。"""
-
+        """策略结束运行时调用。"""
+        pass

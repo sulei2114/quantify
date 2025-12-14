@@ -95,18 +95,25 @@ def print_info_from_url(
     accuracy = analysis_data.get("accuracy")
 
     print(f"股票：{stock_text or '未找到'}")
-    print(f"分析结果：{analysis or '未找到'}\n")
-    print(f"相对估值范围：{relative_range or '未找到'}\n")
-    print(f"绝对估值范围：{absolute_range or '未找到'}\n")
+    print(f"分析结果：{analysis or '未找到'}")
+    print(f"相对估值范围：{relative_range or '未找到'}")
+    print(f"绝对估值范围：{absolute_range or '未找到'}")
     print(f"估值准确性：{accuracy or '未找到'} ")
     return analysis_data
 
 
 def fetch_realtime_price(stock_code: str, timeout: float = 5.0) -> float:
     normalized = stock_code.strip()
-    if len(normalized) != 6 or not normalized.isdigit():
-        raise ValueError("股票代码需为 6 位数字。")
-    prefix = "sh" if normalized.startswith(("5", "6", "9")) else "sz"
+    if not normalized.isdigit():
+        raise ValueError("股票代码需为数字。")
+    
+    if len(normalized) == 5:
+        prefix = "hk"
+    elif len(normalized) == 6:
+        prefix = "sh" if normalized.startswith(("5", "6", "9")) else "sz"
+    else:
+        raise ValueError("股票代码需为 5 位 (港股) 或 6 位 (A股) 数字。")
+
     url = f"http://qt.gtimg.cn/q={prefix}{normalized}"
     response = requests.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
     if response.status_code != 200:

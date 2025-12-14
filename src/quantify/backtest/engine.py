@@ -1,7 +1,7 @@
 """轻量级回测引擎实现，连接数据、策略与配置。"""
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
@@ -17,7 +17,7 @@ class BacktestResult:
     symbol: str
     signals: List[Signal] = field(default_factory=list)
     metrics: Dict[str, Any] = field(default_factory=dict)
-    raw_data: pd.DataFrame | None = None
+    raw_data: Optional[pd.DataFrame] = None
 
 
 class _SimpleContext:

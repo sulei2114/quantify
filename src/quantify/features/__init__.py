@@ -1,6 +1,5 @@
 """特征工程模块。"""
 
-from .technical import MovingAverageFactor
+import os
 
-__all__ = ["MovingAverageFactor"]
-
+__all__ = []

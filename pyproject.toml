@@ -13,12 +13,13 @@
    { name = "Quant Engineering Team" }
  ]
  dependencies = [
-   "numpy>=1.23",
-   "pandas>=2.0",
-   "scipy>=1.10",
-   "matplotlib>=3.7",
-   "pydantic>=2.0"
- ]
+ "numpy>=1.23",
+ "pandas>=2.0",
+ "scipy>=1.10",
+ "matplotlib>=3.7",
+  "pydantic>=2.0",
+  "akshare>=1.13"
+]
 
  [project.optional-dependencies]
  dev = [
@@ -29,4 +30,3 @@
 
  [tool.setuptools.packages.find]
  where = ["src"]
-
